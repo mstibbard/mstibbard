@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full antialiased">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | {{ metas.site }}</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script>
+      document.documentElement.classList.toggle(
+        'dark',
+        localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      )
+      function toggleDarkMode() {
+        localStorage.theme = localStorage.theme === 'dark' ? 'light' : 'dark';
+      }
+    </script>
+  </head>
+  <body class="flex h-full bg-zinc-50 dark:bg-black text-zinc-800 dark:text-zinc-100">
+    <div class="mx-auto w-full max-w-7xl bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20">
+      <div class="mx-auto max-w-2xl md:max-w-5xl">
+        <nav class="flex h-16 md:h-20 items-center justify-between mb-10">
+          <a href="/" class="text-2xl font-extrabold">{{ metas.site }}</a>
+          <div class="flex font-semibold text-lg gap-x-4">
+              <a href="/writing">Writing</a>
+              <a href="/services">Services</a>
+              <button onclick="toggleDarkMode()">Toggle</button>
+          </div>
+        </nav>
+
+        <article class="prose-lg">
+          {{ content }}
+        </article>
+
+        <footer class="mt-24 pb-12 text-center">
+          <p>
+            Copyright &copy; {{ new Date().getFullYear() }} {{ metas.site }}
+          </p>
+          <div class="mt-4 flex justify-center gap-x-4">
+          <a href="{{ `https://x.com/${metas.twitter}` }}" aria-label="X / Twitter">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="currentColor"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z"
+            />
+          </svg></a
+        >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
